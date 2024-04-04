@@ -6,20 +6,20 @@ from socket import *
 
 
 serverName = '255.255.255.255'
-serverPort = 12000
+serverPort = 10100
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 clientSocket.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 
 carSpeedData = {
-    "censorName": "Alexanders Speed Sensor",
-    "carSpeed": 0  
+    "SensorName": "Alexanders Speed Sensor",
+    "CarSpeed": 0  
 }
 
 while True:
-    carSpeedData["carSpeed"] = random.randint(1, 200)
+    carSpeedData["CarSpeed"] = random.randint(1, 200)
     jsonData = json.dumps(carSpeedData)
     print(jsonData)
-    sleep(random.randint(1, 5))
     clientSocket.sendto(jsonData.encode(), (serverName, serverPort))
+    sleep(random.randint(1, 5))
 
     
